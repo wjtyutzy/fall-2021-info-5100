@@ -11,4 +11,8 @@ public class Main {
     private void fff(){
 
     }
+
+    private void uuu(){
+
+    }
 }
