@@ -1,5 +1,7 @@
 package com.company;
 
+import java.util.Arrays;
+
 public class Main {
 
     public static void main(String[] args) {
@@ -44,5 +46,8 @@ public class Main {
         String q5t2 = "A2bb2d4";
         System.out.println(t.isDigiCharSeq(q5t1));
         System.out.println(t.isDigiCharSeq(q5t2));
+    }
+
+
     }
 }

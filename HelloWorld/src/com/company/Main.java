@@ -4,15 +4,10 @@ public class Main {
 
     public static void main(String[] args) {
 	// write your code here
+    
+
+    }//end of the main
 
 
-    }
 
-    private void fff(){
-
-    }
-
-    private void uuu(){
-
-    }
-}
+}//end of the class
