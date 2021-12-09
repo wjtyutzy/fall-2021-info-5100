@@ -7,6 +7,7 @@ public class SportsCar extends CarDecorator{
         super(car);
     }
 
+    @Override
     public void assemble(){
         super.assemble();
         addFeatures();
