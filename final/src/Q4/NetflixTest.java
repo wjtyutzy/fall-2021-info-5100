@@ -1,9 +1,7 @@
 package Q4;
 
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class NetflixTest {
     public static void main(String[] args) {
@@ -43,11 +41,18 @@ public class NetflixTest {
 
         //find movies between 1990 and 2000
         Date date1 = new GregorianCalendar(1990, Calendar.JANUARY, 1).getTime();
-        ArrayList<Movie> list = netflix.getGenres().stream()
+        List<Movie> list = netflix.getGenres().stream()
                 .flatMap(genre -> genre.getMovies().stream())
                 .filter(movie -> movie.getReleasedDate().before(date))
-                .filter(movie -> movie.getReleasedDate().after())
-                .forEach(movie -> System.out.println(movie.title));
+                .filter(movie -> movie.getReleasedDate().after(date))
+                //.filter(m -> m.getYears() < 2000)
+
+                .filter(m -> m.getYears() > 1990).collect(Collectors.toList());
+//
+//              .forEach(movie -> System.out.println(movie.title))
+//                ;
+
+
 
 
         //sort on title
@@ -58,12 +63,33 @@ public class NetflixTest {
 
     }
 
+    private List<Movie> getMovies(Netflix netflix){
+        List<Movie> res =  new ArrayList<>();
+
+        for(Genre g : netflix.getGenres()){
+            for(Movie m : g.getMovies()){
+                if(m.getYears() > 1990 && m.getYears() < 2000){
+                    res.add(m);
+                }
+            }
+        }
+        return res;
+    }
+
+
     //add release year
     public static void addReleasedYear(Netflix netflix){
 
+        netflix.getGenres().forEach(g -> {
+            g.getMovies().forEach(m -> {
+                String title = m.getTitle();
+                m.setTitle( title + " RELEASE YEAR:" + m.getYears());
+            });
+        });
+
         netflix.getGenres().stream().flatMap(genre -> genre.getMovies().stream())
-                .map(movie -> movie.getTitle().concat("releasedDate"))
-                .forEach(movie -> System.out.println(movie));
+                .map(movie -> movie.getTitle().concat("releasedDate").concat(String.valueOf(movie.getYears())));
+                //.forEach(movie -> System.out.println(movie));
     }
 
     public static ArrayList<Genre> generateGenres() {

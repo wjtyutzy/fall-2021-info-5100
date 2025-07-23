@@ -1,8 +1,6 @@
 package Q4;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.GregorianCalendar;
+import java.util.*;
 
 public class Movie {
     public String title;
@@ -29,12 +27,20 @@ public class Movie {
         return title;
     }
 
-    public void setTitle(String title) {
+    public String setTitle(String title) {
         this.title = title;
+        return title;
     }
 
     public Date getReleasedDate() {
         return releasedDate;
+    }
+
+    public int getYears(){
+        //convert date to
+        Calendar cal = Calendar.getInstance(TimeZone.getTimeZone("PST")) ;
+        cal.setTime(this.releasedDate);
+        return cal.get(Calendar.YEAR);
     }
 
     public void setReleasedDate(Date releasedDate) {
